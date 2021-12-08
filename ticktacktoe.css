@@ -43,7 +43,7 @@ body {
   width: 10px;
   background-color: steelblue;
 }
-[data-play] {
+[data-button] {
   display: flex;
   justify-items: center;
   align-items: center;
@@ -51,6 +51,7 @@ body {
   height: 150px;
   width: 150px;
   margin: auto;
+  box-sizing: border-box;
 }
 [data-row1] {
   border-bottom: steelblue 10px solid;
@@ -69,6 +70,7 @@ thining for win would also have to know it for displaying line across if wanted 
 ---can make one where it maps every possible solution, win or can maybe have it dynamic based on the orientation of winnig play
 -----and for the actual cross line some thing on layer above all that way no issue with things crossing on page*/
 
+/* winnig strickthrough style */
 .testing {
   position: absolute;
   transform: rotate(45deg);
@@ -89,3 +91,49 @@ thining for win would also have to know it for displaying line across if wanted 
 /* made every possible combination for a win with the slash (though not resposive site just yet, laying out something that i would say is looking pretty good so far) */
 
 /* figure out how we'll get the x and o just the styling (how the appear on screen and which when we'll do later */
+
+.display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+/* adding these date point to each span will create the x for display
+---they at start dont exist in the html only when (action they get applyied to the appropriet location)
+-----then for new game looking ahead (have cheap ideal to reset, get it to refresh the page lul/other just reset remove all added) */
+[data-x1] {
+  position: relative;
+  left: 5px;
+  height: 10px;
+  width: 140px;
+  transform: rotate(-45deg);
+  background-color: black;
+}
+
+[data-x2] {
+  position: relative;
+  right: 133px;
+  height: 10px;
+  width: 140px;
+  transform: rotate(45deg);
+  background-color: black;
+}
+/* here have our circle also based on a data point added to the first span only to display circle */
+
+[data-o1] {
+  position: relative;
+  border-radius: 100%;
+  height: 140px;
+  width: 140px;
+  right: -5px;
+  background-color: black;
+}
+[data-o2] {
+  position: relative;
+  border-radius: 100%;
+  height: 120px;
+  width: 120px;
+  left: -125px;
+  background-color: teal;
+}
