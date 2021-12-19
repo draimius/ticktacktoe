@@ -73,22 +73,23 @@ thining for win would also have to know it for displaying line across if wanted 
 /* winnig strickthrough style */
 .testing {
   position: absolute;
-  transform: rotate(45deg);
-  transform: rotate(-45deg);
-  transform: rotate(-0deg);
-  /* transform: rotate(90deg); */
+  /* transform: rotate(45deg); */
+  /* transform: rotate(-45deg); */
+  /* transform: rotate(-0deg); */
+  transform: rotate(90deg);
   z-index: 1;
   height: 10px;
   width: 550px;
   background-color: black;
-  /* right: 85px; */
+  right: 85px;
   /* right: 255px; */
   /* right: 425px; */
-  /* top: 510px;
+  /* top: 510px; */
   top: 340px;
-  top: 180px; */
+  /* top: 180px; */
 }
 /* made every possible combination for a win with the slash (though not resposive site just yet, laying out something that i would say is looking pretty good so far) */
+/* above containg all properties and value to create all possible strike through's on board */
 
 /* figure out how we'll get the x and o just the styling (how the appear on screen and which when we'll do later */
 
@@ -102,6 +103,8 @@ thining for win would also have to know it for displaying line across if wanted 
 /* adding these date point to each span will create the x for display
 ---they at start dont exist in the html only when (action they get applyied to the appropriet location)
 -----then for new game looking ahead (have cheap ideal to reset, get it to refresh the page lul/other just reset remove all added) */
+/* -------------------------------creates the x */
+
 [data-x1] {
   position: relative;
   left: 5px;
@@ -119,8 +122,12 @@ thining for win would also have to know it for displaying line across if wanted 
   transform: rotate(45deg);
   background-color: black;
 }
-/* here have our circle also based on a data point added to the first span only to display circle */
+/* -------------------------------creates the x */
 
+/* here have our circle also based on a data point added to the first span only to display circle */
+/* we just add these two data tags to same order span in each box
+//--order does matter in spans withing box */
+/* -------------------------------creates the circle */
 [data-o1] {
   position: relative;
   border-radius: 100%;
@@ -137,3 +144,104 @@ thining for win would also have to know it for displaying line across if wanted 
   left: -125px;
   background-color: teal;
 }
+/* --------------------------creates the circle */
+
+/* what else do we need here in css what else can we or do we need to add???????
+  we have all the boxed , we have the grid, we have all circle and x to add to board
+  we have all the strike through combination (work on making them all seperate)
+  --should i set all seperate combinations or should i let that actual input then 
+  ---determin what the class"strike through" shold be 
+  -----one mean a can just add a class
+  -----while the oher i have to assign several properties and remove them 
+  //----though more classes ect... i think i just make all the combination up front its only like 8 i think
+alright created all classes though some repetative i say ok for now 
+//can clean up later , now gonna move onto the logic 
+  */
+
+/* diagonals */
+.diagonal-a {
+  transform: rotate(45deg);
+  position: absolute;
+  z-index: 1;
+  height: 10px;
+  width: 550px;
+  background-color: black;
+  top: 340px;
+  right: 255px;
+}
+.diagonal-c {
+  transform: rotate(-45deg);
+  position: absolute;
+  z-index: 1;
+  height: 10px;
+  width: 550px;
+  background-color: black;
+  top: 340px;
+  right: 255px;
+}
+/* -------------diagonals */
+
+/* horizontal */
+
+.horizontal-a {
+  transform: rotate(-0deg);
+  position: absolute;
+  z-index: 1;
+  height: 10px;
+  width: 550px;
+  background-color: black;
+  top: 180px;
+  right: 255px;
+}
+.horizontal-b {
+  transform: rotate(-0deg);
+  position: absolute;
+  z-index: 1;
+  height: 10px;
+  width: 550px;
+  background-color: black;
+  right: 255px;
+  top: 340px;
+}
+.horizontal-c {
+  transform: rotate(-0deg);
+  position: absolute;
+  z-index: 1;
+  height: 10px;
+  width: 550px;
+  background-color: black;
+  right: 255px;
+  top: 510px;
+}
+/* -------------horizontal */
+
+/* verticals */
+.vertical-a {
+  position: absolute;
+  transform: rotate(90deg);
+  z-index: 1;
+  height: 10px;
+  width: 550px;
+  background-color: black;
+  right: 425px;
+}
+.vertical-b {
+  position: absolute;
+  transform: rotate(90deg);
+  z-index: 1;
+  height: 10px;
+  width: 550px;
+  background-color: black;
+  right: 255px;
+}
+.vertical-c {
+  position: absolute;
+  transform: rotate(90deg);
+  z-index: 1;
+  height: 10px;
+  width: 550px;
+  background-color: black;
+  right: 85px;
+}
+
+/* -------------verticals */
