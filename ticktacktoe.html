@@ -9,53 +9,71 @@
   </head>
   <body>
     <div id="container">
+      <h1 class="turn">x'a turn</h1>
       <div id="frame">
+        <div id="strike" class=""></div>
         <!-- ROW ONE -->
-        <div class="row" data-row1>
-          <div data-button data-1a></div>
+        <div class="row" data-rowa>
+          <div data-button>
+            <div data-a1 class="display">
+              <span class="data-x1"></span><span class="data-x2"></span>
+            </div>
+          </div>
           <!--  -->
           <div class="split"></div>
           <!--  -->
-          <div data-button data-1b></div>
+          <div data-button>
+            <div data-a2 class="display">
+              <span class="data-o1"></span><span class="data-o2"></span>
+            </div>
+          </div>
           <!--  -->
           <div class="split"></div>
           <!--  -->
-          <div data-button data-1c></div>
+          <div data-button>
+            <div data-a3 class="display"><span></span><span></span></div>
+          </div>
         </div>
 
         <!-- ROW TWO -->
-        <div class="row" data-row2>
-          <div data-button data-2a></div>
+        <div class="row" data-rowb>
+          <div data-button>
+            <div data-b1 class="display"><span></span><span></span></div>
+          </div>
           <!--  -->
           <div class="split"></div>
           <!--  -->
-          <div id="strike" class="diagonal-a"></div>
-          <div data-button data-2b></div>
+          <div data-button>
+            <div data-b2 class="display"><span></span><span></span></div>
+          </div>
           <!--  -->
           <div class="split"></div>
           <!--  -->
-          <div data-button data-2c></div>
+          <div data-button>
+            <div data-b3 class="display"><span></span><span></span></div>
+          </div>
         </div>
 
         <!-- ROW THREE -->
-        <div class="row" data-row3>
-          <div data-button data-3a>
-            <div class="display"><span></span><span></span></div>
+        <div class="row" data-rowc>
+          <div data-button>
+            <div data-c1 class="display"><span></span><span></span></div>
           </div>
           <!--  -->
           <div class="split"></div>
           <!--  -->
-          <div data-button data-3b>
-            <div class="display"><span></span><span></span></div>
+          <div data-button>
+            <div data-c2 class="display"><span></span><span></span></div>
           </div>
           <!--  -->
           <div class="split"></div>
           <!--  -->
-          <div data-button data-3c>
-            <div class="display"><span></span><span></span></div>
+          <div data-button>
+            <div data-c3 class="display"><span></span><span></span></div>
           </div>
         </div>
       </div>
+      <button class="play">Play</button>
     </div>
     <script src="ticktacktoe.js"></script>
   </body>

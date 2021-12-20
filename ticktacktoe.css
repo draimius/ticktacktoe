@@ -15,13 +15,13 @@ body {
 
 #container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 #frame {
-  margin: 100px auto;
+  margin: 50px auto 50px;
   height: 500px;
   width: 500px;
   background-color: snow;
@@ -42,6 +42,22 @@ body {
   height: 100%;
   width: 10px;
   background-color: steelblue;
+}
+/* display wether its x or o turn */
+/* this initiats with the playbutton event */
+.turn {
+  margin-top: 200px;
+  /* test-content */
+}
+.play {
+  padding: 10px 40px;
+  font-size: 2rem;
+  border-radius: 5px;
+  transition: all;
+  transition-duration: 0.3s;
+}
+.play:hover {
+  opacity: 0.7;
 }
 [data-button] {
   display: flex;
@@ -65,31 +81,7 @@ body {
 /* thinking each play div act pretty much like a button , idea also is to creat like chess boast row and culumn where 
 ----there abc 123 a2, 3c, ect type of move this way can trach if there is a winnis play made ect...
 
-
-thining for win would also have to know it for displaying line across if wanted to do that 
----can make one where it maps every possible solution, win or can maybe have it dynamic based on the orientation of winnig play
------and for the actual cross line some thing on layer above all that way no issue with things crossing on page*/
-
-/* winnig strickthrough style */
-.testing {
-  position: absolute;
-  /* transform: rotate(45deg); */
-  /* transform: rotate(-45deg); */
-  /* transform: rotate(-0deg); */
-  transform: rotate(90deg);
-  z-index: 1;
-  height: 10px;
-  width: 550px;
-  background-color: black;
-  right: 85px;
-  /* right: 255px; */
-  /* right: 425px; */
-  /* top: 510px; */
-  top: 340px;
-  /* top: 180px; */
-}
-/* made every possible combination for a win with the slash (though not resposive site just yet, laying out something that i would say is looking pretty good so far) */
-/* above containg all properties and value to create all possible strike through's on board */
+ containg all properties and value to create all possible strike through's on board */
 
 /* figure out how we'll get the x and o just the styling (how the appear on screen and which when we'll do later */
 
@@ -98,6 +90,8 @@ thining for win would also have to know it for displaying line across if wanted 
   justify-content: center;
   align-items: center;
   margin: auto;
+  height: 100%;
+  width: 100%;
 }
 
 /* adding these date point to each span will create the x for display
@@ -105,43 +99,43 @@ thining for win would also have to know it for displaying line across if wanted 
 -----then for new game looking ahead (have cheap ideal to reset, get it to refresh the page lul/other just reset remove all added) */
 /* -------------------------------creates the x */
 
-[data-x1] {
+.data-x1 {
   position: relative;
-  left: 5px;
+  right: -40px;
   height: 10px;
-  width: 140px;
+  width: 100%;
+  transform: rotate(45deg);
+  background-color: black;
+}
+.data-x2 {
+  position: relative;
+  right: 35px;
+  height: 10px;
+  width: 100%;
   transform: rotate(-45deg);
   background-color: black;
 }
 
-[data-x2] {
-  position: relative;
-  right: 133px;
-  height: 10px;
-  width: 140px;
-  transform: rotate(45deg);
-  background-color: black;
-}
 /* -------------------------------creates the x */
 
 /* here have our circle also based on a data point added to the first span only to display circle */
 /* we just add these two data tags to same order span in each box
 //--order does matter in spans withing box */
 /* -------------------------------creates the circle */
-[data-o1] {
+.data-o1 {
   position: relative;
   border-radius: 100%;
-  height: 140px;
-  width: 140px;
-  right: -5px;
+  height: 100px;
+  width: 200px;
+  right: -35px;
   background-color: black;
 }
-[data-o2] {
+.data-o2 {
   position: relative;
   border-radius: 100%;
-  height: 120px;
-  width: 120px;
-  left: -125px;
+  height: 80px;
+  width: 140px;
+  right: 40px;
   background-color: teal;
 }
 /* --------------------------creates the circle */
@@ -161,23 +155,23 @@ alright created all classes though some repetative i say ok for now
 /* diagonals */
 .diagonal-a {
   transform: rotate(45deg);
-  position: absolute;
+  position: relative;
   z-index: 1;
   height: 10px;
   width: 550px;
   background-color: black;
-  top: 340px;
-  right: 255px;
+  top: 250px;
+  right: 30px;
 }
 .diagonal-c {
   transform: rotate(-45deg);
-  position: absolute;
+  position: relative;
   z-index: 1;
   height: 10px;
   width: 550px;
   background-color: black;
-  top: 340px;
-  right: 255px;
+  top: 250px;
+  right: 30px;
 }
 /* -------------diagonals */
 
@@ -185,63 +179,66 @@ alright created all classes though some repetative i say ok for now
 
 .horizontal-a {
   transform: rotate(-0deg);
-  position: absolute;
+  position: relative;
   z-index: 1;
   height: 10px;
   width: 550px;
   background-color: black;
-  top: 180px;
-  right: 255px;
+  top: 90px;
+  right: 25px;
 }
 .horizontal-b {
   transform: rotate(-0deg);
-  position: absolute;
+  position: relative;
   z-index: 1;
   height: 10px;
   width: 550px;
   background-color: black;
-  right: 255px;
-  top: 340px;
+  right: 25px;
+  top: 250px;
 }
 .horizontal-c {
   transform: rotate(-0deg);
-  position: absolute;
+  position: relative;
   z-index: 1;
   height: 10px;
   width: 550px;
   background-color: black;
-  right: 255px;
-  top: 510px;
+  right: 25px;
+  top: 415px;
 }
 /* -------------horizontal */
 
 /* verticals */
-.vertical-a {
-  position: absolute;
+.vertical-1 {
+  position: relative;
   transform: rotate(90deg);
   z-index: 1;
   height: 10px;
   width: 550px;
   background-color: black;
-  right: 425px;
+  right: 190px;
+  top: 250px;
 }
-.vertical-b {
-  position: absolute;
+.vertical-2 {
+  position: relative;
   transform: rotate(90deg);
   z-index: 1;
   height: 10px;
   width: 550px;
   background-color: black;
-  right: 255px;
+  right: 25px;
+  top: 250px;
 }
-.vertical-c {
-  position: absolute;
+.vertical-3 {
+  position: relative;
   transform: rotate(90deg);
   z-index: 1;
   height: 10px;
   width: 550px;
   background-color: black;
-  right: 85px;
+  right: -145px;
+  top: 250px;
 }
 
 /* -------------verticals */
