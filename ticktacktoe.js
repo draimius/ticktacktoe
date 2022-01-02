@@ -2,16 +2,70 @@
 console.log("game on");
 
 class GameBoard {
-    constructor() { }
-}
+    constructor() { 
+        this.gameOver = false
+        this.player = 1
+    }
+    gameReset(){
+
+    }
+    printTurn(){
+
+    }
+    printO(parentDiv){
+            //add in each of there that the tartget must be a div containig the 'display' class
+    //--else dont run below(havent checked what happens if hit something else lets see) - very funcky stuff happends
+    let spanShape = parentDiv.children;
+    let count = 1;
+    for (let span of spanShape) {
+        console.log(span);
+        span.classList.add(`data-o${count}`);
+        count++;
+    }
+    }
+    printX(parentDiv){
+        let spanShape = parentDiv.children;
+        let count = 1;
+        for (let span of spanShape) {
+            console.log(span);
+            span.classList.add(`data-x${count}`);
+            count++;
+        }}
+    }
+    
 
 let tack = new GameBoard();
 
-///////logic for x n o display
-///////logic for it being two player (switch back n forth)
-///////logic to display winning move
+///////logic for x n o display [ground work completed]
+///////logic for it being two player [ground work completed]
+///////logic to display winning move 
 ///////then refine and bug fix
 ///////any display changed details
+
+// *REVIEW for myt self what do we really need to build here big things are the display changing with every click till game is won
+// -so every space click we add either the x or o correspondig to the player (will defaust to 0[x] 1[o] done)
+// -the play button /initiation are sort of ectras to just kinda tie everthing together done after all logic
+// --the other big thing is kNOWING when the game has been one(we can constently check fucntion run if game has won before swap player)
+// herer we need a way to know if the appropriate connection has been made (thinking graph sorts)
+// then one we know winnig connectiong display the appropriate strike through for the winnig line positioning
+// make the game over(everything should be disabled if game over = true)
+// only when the play again button below is clicked then :
+// -all values return back to default all div classe back to original, (x n o removed) and strike through removed
+// if graph grapth connection or anyvalue adjusted/added ect.. return to default structure
+// and good to go again for another game 
+
+//we'd like to be page open everything is initialy disabled but the play button 
+// hit the play button and now everything is active - we display what symbol's turn it is above the board
+// player positions symbol , player swap text changes to the current players sybol(x to o player turn)
+// and that continues till game is won or its no longer possible to win based on board and xo positions
+//
+
+
+
+// what do we do if there is no winner (do we cut when all are filled, or when winnig is just not possible anymore)
+
+
+
 
 //how should we build this ????
 //-should i do it like we did that calc think soo that work
@@ -59,6 +113,10 @@ let tack = new GameBoard();
 // span data box value matches the whole div box value
 
 //=============================function for displaying the x's and o's in all boxes======================
+
+// ***add in checks for both insuring that the taget/element clikced is what we actually want and not eles
+// ---as if something other that div wanted creates issues
+
 //do not yet contain any checks to insure corrent value are being passed into funcitons
 //function takes parent node as input and add X's to square selected
 function addXs(ParentDiv) {
@@ -103,18 +161,48 @@ frame.addEventListener("click", function () {
 //player 2 = o's (simple)
 //something that runs after player turn aka(display added to board) = ok the now switch to player 2
 //repeat aka put piece on board ok now other players turn (this continues till gameover = true)
+//here think pretty much it things will just have to take into consideration when creating all other methods
+//---so that we know which player turn it is
+// game over would have to be false that one check then we would swab after the completion run 
+// --of the clikc and display function x or o shows up one done should not swap to the others players turn
+// simple as tht 
+
 
 // so is this more of a simple variable or does this inded require a function//
 // thinking really just a varible
 let player = 1 //will be default then 2then back to 1 and so forth
-//we always start with player as = 1
+//we always start with player as = 1  ( actuallu think do 1 and 0 for the players actually)
 // also :
 let gameOver = false//once wining params are met it triggers change to true 
 // and everything gets 'disabled' 
 // -cant add anymore to the board
 // -who's turn it is will not change
 // ect....
+
+
+
+
+
+///done in constructor using the 'this' keyword
 //=============================inintiation of the game & a reset of the game======================
 //----the only thing that can be done is hit the playagain button bellow the board
 //-that will reset everything back to defualt values (player, gameover, ect.. and remove add previously added classes style ect...)
+//have it in the constructor for the vars to be set
+//jsut have defualt value and have it set back to that (function containit all value = defualt)
+
+
+
+//=============================   How do we know when the game has been won (or not possible)  ======================
+
+// we can create a graph that represent the board with all nodes connected as they could be on the board 
+// connected vertcally and horizontaly we know for sure we want what about diagnols do we want them and all of them???
+
+
+
+
+
+
+
+
+
 
