@@ -1,44 +1,9 @@
 "use strict";
 console.log("game on");
 
-class GameBoard {
-    constructor() { 
-        this.gameOver = false
-        this.player = 1
-    }
-    gameReset(){
-
-    }
-    printTurn(){
-
-    }
-    printO(parentDiv){
-            //add in each of there that the tartget must be a div containig the 'display' class
-    //--else dont run below(havent checked what happens if hit something else lets see) - very funcky stuff happends
-    let spanShape = parentDiv.children;
-    let count = 1;
-    for (let span of spanShape) {
-        console.log(span);
-        span.classList.add(`data-o${count}`);
-        count++;
-    }
-    }
-    printX(parentDiv){
-        let spanShape = parentDiv.children;
-        let count = 1;
-        for (let span of spanShape) {
-            console.log(span);
-            span.classList.add(`data-x${count}`);
-            count++;
-        }}
-    }
-    
-
-let tack = new GameBoard();
-
 ///////logic for x n o display [ground work completed]
 ///////logic for it being two player [ground work completed]
-///////logic to display winning move 
+///////logic to display winning move
 ///////then refine and bug fix
 ///////any display changed details
 
@@ -52,157 +17,136 @@ let tack = new GameBoard();
 // only when the play again button below is clicked then :
 // -all values return back to default all div classe back to original, (x n o removed) and strike through removed
 // if graph grapth connection or anyvalue adjusted/added ect.. return to default structure
-// and good to go again for another game 
+// and good to go again for another game
 
-//we'd like to be page open everything is initialy disabled but the play button 
+//we'd like to be page open everything is initialy disabled but the play button
 // hit the play button and now everything is active - we display what symbol's turn it is above the board
 // player positions symbol , player swap text changes to the current players sybol(x to o player turn)
 // and that continues till game is won or its no longer possible to win based on board and xo positions
 //
 
-
-
 // what do we do if there is no winner (do we cut when all are filled, or when winnig is just not possible anymore)
-
-
-
-
-//how should we build this ????
-//-should i do it like we did that calc think soo that work
-//-than just have like calc, functions run on event listeners
-//steps:we want to in pseudo code and just english
-//---define all function action that will be need
-//--then how we will implement them and how they will work together
-//once we have to whole and actions structure
-//we will define all var's need like the board, grid, buttons ect...
-//after that we start working on the functions
-//any helper funciton needed ect...
-//then with all function done
-//we work on implementing them with event listeners (what needs everylistners???)
-//and from there we just test everything
-
-//what are our inputs?
-//--thinking should we have a button to "start game" and "restart"
-//--or should there just not be a start button
-//--we will have to have a resart/play again button have on screen from start
-//--or it shows up once the game is over....
-//--think just both then have a play and playagain / have it be same button but changes
-//--based on the the state of the game (aka gameover = true or false)
-//though adding a button for play/play again may effect current layout (ahh that's bs can make it work ez)
-//
-
-//-input are button clicks in one of the 9 squares
-//-when clicked it should fill in the space clicked with respective x or o(vary on player)
-//-then the clikcing and filling with shape continues
-//-till we have 3 of one shape in a row wether vertical, horizontal, diagonal
-//-when that happends the game is over
-//-
-//-
-//-
-
-//say we get started on the simple started stuff needed like display stuff
-//then with all that just implement greater logic for all that to work together with all
-//--game conditions and "rules"
-//what are the output/result we want
-
-//add buttons for play and play again
-
-// let test = document.querySelector('[data')
-// what if i just use the data tad to grab all of the span id use for the x n o's display
-//- the we add call loopoing through add the spans and see which span/location box
-// span data box value matches the whole div box value
-
-//=============================function for displaying the x's and o's in all boxes======================
-
-// ***add in checks for both insuring that the taget/element clikced is what we actually want and not eles
-// ---as if something other that div wanted creates issues
-
-//do not yet contain any checks to insure corrent value are being passed into funcitons
-//function takes parent node as input and add X's to square selected
-function addXs(ParentDiv) {
-    //add in each of there that the tartget must be a div containig the 'display' class
-    //--else dont run below(havent checked what happens if hit something else lets see) - very funcky stuff happends
-    let spanShape = ParentDiv.children;
-    let count = 1;
-    for (let span of spanShape) {
-        console.log(span);
-        span.classList.add(`data-x${count}`);
-        count++;
-    }
+//dont think we'll actually need node all we really need is to pass in the player value into the matrix
+class Node {
+  constructor(val) {
+    this.val = val;
+  }
 }
 
-//function takes parent node as input and add O's to square selected
-function addOs(ParentDiv) {
-    let spanShape = ParentDiv.children;
+class GameBoard {
+  constructor(size = 3) {
+    this.gameStarted = false;
+    this.gameOver = false;
+    this.player = 1;
+    this.row1 = new Array(size);
+    this.row2 = new Array(size);
+    this.row3 = new Array(size);
+    this.boardMatrix = [this.row1, this.row2, this.row3];
+  }
+
+  addToBoard(element) {
+    //once all spots are filled can no longer add(though we want to stop on a win or if no longer possible to win)
+    //isures if the right target(we can move this check into the eveny listener maybe so not repeated accross functions)
+    if (element.classList[0] === "display") {
+      let x = element.getAttribute("data-x-position");
+      let y = element.getAttribute("data-y-position");
+      if (this.boardMatrix[y][x] === undefined) {
+        this.boardMatrix[y][x] = this.player;
+        console.log(x, y);
+        console.log(this.boardMatrix);
+        this.checkIfGameWon();
+      }
+      //   console.log(element.getAttribute("data-x-position"));
+    }
+    // console.log(attributes["data-x-position"]);
+    // if (attributes["data-x-position"])
+    // let y =
+    // for (let item in attributes) {
+    //   console.log(item);
+    // }
+  }
+  checkIfGameWon() {
+    //if any one array cointains all the same value or mathing value then we have a win
+    // (00, 01, 02,)/ (10, 11, 12)/ (20, 21, 22)
+    //if we have value that existe in all 3 arrays and all in the same index value across all
+    // (00, 10, 20)/  (01, 11, 21)/ (02, 12, 22)
+    //if we have same value across all array in increaming or decresing order staring from left to right or right ot left
+    //(00, 11, 22/ 20, 11, 02)
+    //should we just itarate over the whole thing
+    for (let i = 0; i < 3; i++) {
+      //   this.boardMatrix[i];
+      console.log(this.boardMatrix[i]);
+      for (let j = 0; j < 3; j++) {
+        console.log(this.boardMatrix[i][j]);
+      }
+    }
+  }
+  displayStrike() {
+    //display winig strike through correnponding to positioning of x and o's
+  }
+  gameReset() {
+    //resert all the values back to default
+    this.clearBoard();
+  }
+  clearBoard() {
+    //   clears all classes back to original(spans and strike through div)
+  }
+  printCurrentPlayer() {}
+
+  printTurn(squareSelected) {
+    //attribute look to here later and may not actually greate ideal to do in this method (though are looking to use )
+    let nodeMap = squareSelected.attributes;
+
+    //capture the targets children(aka spans)
+    let targetChildren = squareSelected.children;
+    //checks event target containd 'display' class aka correct element
+    if (squareSelected.classList["value"] === "display") {
+      for (let child of targetChildren) {
+        //checks that children classlist is empty to print else no print
+        if (child.classList.value === "") {
+          //checks who the current player is
+          if (this.player) {
+            this.printX(squareSelected);
+            this.player = 0;
+          } else {
+            this.printO(squareSelected);
+            this.player = 1;
+          }
+        }
+      }
+    }
+  }
+  printO(parentDiv) {
+    let spanShape = parentDiv.children;
     let count = 1;
     for (let span of spanShape) {
-        console.log(span);
-        span.classList.add(`data-o${count}`);
-        count++;
+      span.classList.add(`data-o${count}`);
+      count++;
     }
+  }
+  printX(parentDiv) {
+    let spanShape = parentDiv.children;
+    let count = 1;
+    for (let span of spanShape) {
+      span.classList.add(`data-x${count}`);
+      count++;
+    }
+  }
+  winningMove() {
+    //checks if the game has been won or if winning is still possible
+  }
 }
 
+//create new gameboard
+let board = new GameBoard();
+
+//all DOM varibles
 let frame = document.querySelector("#frame");
+
+//all event listeners
 //this creates a listener on whole frame
 frame.addEventListener("click", function () {
-    let check = event.target;
-    //what is return to run will depend on which player's turn it is
-    //if player = 1 then the x
-    return addXs(check);
-    //else (player = 2) and we do o's
-    return addOs(check);
+  let target = event.target;
+  board.printTurn(target);
+  board.addToBoard(target);
 });
-
-
-
-//=============================function make it so there are two player in game======================
-
-//we know we hit play then displays x's turn which will correspond to player 1
-//player 2 = o's (simple)
-//something that runs after player turn aka(display added to board) = ok the now switch to player 2
-//repeat aka put piece on board ok now other players turn (this continues till gameover = true)
-//here think pretty much it things will just have to take into consideration when creating all other methods
-//---so that we know which player turn it is
-// game over would have to be false that one check then we would swab after the completion run 
-// --of the clikc and display function x or o shows up one done should not swap to the others players turn
-// simple as tht 
-
-
-// so is this more of a simple variable or does this inded require a function//
-// thinking really just a varible
-let player = 1 //will be default then 2then back to 1 and so forth
-//we always start with player as = 1  ( actuallu think do 1 and 0 for the players actually)
-// also :
-let gameOver = false//once wining params are met it triggers change to true 
-// and everything gets 'disabled' 
-// -cant add anymore to the board
-// -who's turn it is will not change
-// ect....
-
-
-
-
-
-///done in constructor using the 'this' keyword
-//=============================inintiation of the game & a reset of the game======================
-//----the only thing that can be done is hit the playagain button bellow the board
-//-that will reset everything back to defualt values (player, gameover, ect.. and remove add previously added classes style ect...)
-//have it in the constructor for the vars to be set
-//jsut have defualt value and have it set back to that (function containit all value = defualt)
-
-
-
-//=============================   How do we know when the game has been won (or not possible)  ======================
-
-// we can create a graph that represent the board with all nodes connected as they could be on the board 
-// connected vertcally and horizontaly we know for sure we want what about diagnols do we want them and all of them???
-
-
-
-
-
-
-
-
-
-
