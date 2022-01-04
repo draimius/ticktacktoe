@@ -22,7 +22,6 @@ class GameBoard {
   }
   //reset and variable, classed and value back to original
   gameReset(target) {
-    console.log(target);
     if (this.gameOver) {
       this.clearBoard();
       this.clearMatrix();
