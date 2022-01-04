@@ -153,7 +153,7 @@ alright created all classes though some repetative i say ok for now
   */
 
 /* diagonals */
-.diagonal-a {
+.diagonal-1 {
   transform: rotate(45deg);
   position: relative;
   z-index: 1;
@@ -163,7 +163,7 @@ alright created all classes though some repetative i say ok for now
   top: 250px;
   right: 30px;
 }
-.diagonal-c {
+.diagonal-2 {
   transform: rotate(-45deg);
   position: relative;
   z-index: 1;
@@ -177,7 +177,7 @@ alright created all classes though some repetative i say ok for now
 
 /* horizontal */
 
-.horizontal-a {
+.horizontal-1 {
   transform: rotate(-0deg);
   position: relative;
   z-index: 1;
@@ -187,7 +187,7 @@ alright created all classes though some repetative i say ok for now
   top: 90px;
   right: 25px;
 }
-.horizontal-b {
+.horizontal-2 {
   transform: rotate(-0deg);
   position: relative;
   z-index: 1;
@@ -197,7 +197,7 @@ alright created all classes though some repetative i say ok for now
   right: 25px;
   top: 250px;
 }
-.horizontal-c {
+.horizontal-3 {
   transform: rotate(-0deg);
   position: relative;
   z-index: 1;

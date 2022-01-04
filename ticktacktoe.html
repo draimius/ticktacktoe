@@ -9,11 +9,11 @@
   </head>
   <body>
     <div id="container">
-      <h1 class="turn">x'a turn</h1>
+      <h1 id="player-text" class="turn">x'a turn</h1>
       <div id="frame">
         <div id="strike" class=""></div>
         <!-- ROW ONE -->
-        <div class="row" data-rowa>
+        <div class="row" data-row="1">
           <div data-button>
             <div data-y-position="0" data-x-position="0" class="display">
               <span></span><span></span>
@@ -38,7 +38,7 @@
         </div>
 
         <!-- ROW TWO -->
-        <div class="row" data-rowb>
+        <div class="row" data-row="2">
           <div data-button>
             <div data-y-position="1" data-x-position="0" class="display">
               <span></span><span></span>
@@ -63,7 +63,7 @@
         </div>
 
         <!-- ROW THREE -->
-        <div class="row" data-rowc>
+        <div class="row" data-row="3">
           <div data-button>
             <div data-y-position="2" data-x-position="0" class="display">
               <span></span><span></span>
@@ -87,7 +87,7 @@
           </div>
         </div>
       </div>
-      <button class="play">Play</button>
+      <button id="play-button" class="play">Play</button>
     </div>
     <script src="ticktacktoe.js"></script>
   </body>
