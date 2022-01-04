@@ -24,7 +24,6 @@ body {
   margin: 50px auto 50px;
   height: 500px;
   width: 500px;
-  background-color: snow;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,16 +37,8 @@ body {
   height: 33%;
 }
 
-.split {
-  height: 100%;
-  width: 10px;
-  background-color: steelblue;
-}
-/* display wether its x or o turn */
-/* this initiats with the playbutton event */
 .turn {
-  margin-top: 200px;
-  /* test-content */
+  margin-top: 150px;
 }
 .play {
   padding: 10px 40px;
@@ -57,33 +48,19 @@ body {
   transition-duration: 0.3s;
 }
 .play:hover {
-  opacity: 0.7;
+  opacity: 0.6;
+  border: salmon 5px solid;
 }
 [data-button] {
   display: flex;
   justify-items: center;
   align-items: center;
-  background-color: teal;
+  background-color: white;
   height: 150px;
   width: 150px;
   margin: auto;
   box-sizing: border-box;
 }
-[data-row1] {
-  border-bottom: steelblue 10px solid;
-  margin: 0;
-}
-[data-row2] {
-  margin: 0;
-  border-bottom: steelblue 10px solid;
-}
-
-/* thinking each play div act pretty much like a button , idea also is to creat like chess boast row and culumn where 
-----there abc 123 a2, 3c, ect type of move this way can trach if there is a winnis play made ect...
-
- containg all properties and value to create all possible strike through's on board */
-
-/* figure out how we'll get the x and o just the styling (how the appear on screen and which when we'll do later */
 
 .display {
   display: flex;
@@ -94,11 +71,7 @@ body {
   width: 100%;
 }
 
-/* adding these date point to each span will create the x for display
----they at start dont exist in the html only when (action they get applyied to the appropriet location)
------then for new game looking ahead (have cheap ideal to reset, get it to refresh the page lul/other just reset remove all added) */
-/* -------------------------------creates the x */
-
+/* create x's */
 .data-x1 {
   position: relative;
   right: -40px;
@@ -116,12 +89,7 @@ body {
   background-color: black;
 }
 
-/* -------------------------------creates the x */
-
-/* here have our circle also based on a data point added to the first span only to display circle */
-/* we just add these two data tags to same order span in each box
-//--order does matter in spans withing box */
-/* -------------------------------creates the circle */
+/* create circles */
 .data-o1 {
   position: relative;
   border-radius: 100%;
@@ -136,23 +104,10 @@ body {
   height: 80px;
   width: 140px;
   right: 40px;
-  background-color: teal;
+  background-color: white;
 }
-/* --------------------------creates the circle */
 
-/* what else do we need here in css what else can we or do we need to add???????
-  we have all the boxed , we have the grid, we have all circle and x to add to board
-  we have all the strike through combination (work on making them all seperate)
-  --should i set all seperate combinations or should i let that actual input then 
-  ---determin what the class"strike through" shold be 
-  -----one mean a can just add a class
-  -----while the oher i have to assign several properties and remove them 
-  //----though more classes ect... i think i just make all the combination up front its only like 8 i think
-alright created all classes though some repetative i say ok for now 
-//can clean up later , now gonna move onto the logic 
-  */
-
-/* diagonals */
+/* diagonal strikethrough */
 .diagonal-1 {
   transform: rotate(45deg);
   position: relative;
@@ -173,10 +128,8 @@ alright created all classes though some repetative i say ok for now
   top: 250px;
   right: 30px;
 }
-/* -------------diagonals */
 
-/* horizontal */
-
+/* horizontal strikethrough */
 .horizontal-1 {
   transform: rotate(-0deg);
   position: relative;
@@ -207,9 +160,8 @@ alright created all classes though some repetative i say ok for now
   right: 25px;
   top: 415px;
 }
-/* -------------horizontal */
 
-/* verticals */
+/* vertical strikethrough */
 .vertical-1 {
   position: relative;
   transform: rotate(90deg);
@@ -240,5 +192,3 @@ alright created all classes though some repetative i say ok for now
   right: -145px;
   top: 250px;
 }
-
-/* -------------verticals */

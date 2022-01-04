@@ -1,15 +1,7 @@
 "use strict";
 console.log("game on");
 
-///////logic for x n o display [ground work completed]
-///////logic for it being two player [ground work completed]
-///////logic to display winning move
-///////then refine and bug fix
-///////any display changed details
-/////initiate game with play button click (nothing should work till initiation takes place)
-//// (also when game over all functionality should turn off , once game is won  )
-/// not till play again button clicked then we can reset everything and game is resarted
-
+// Class for GameBoard
 class GameBoard {
   constructor() {
     this.gameStarted = false;
@@ -17,6 +9,7 @@ class GameBoard {
     this.player = 1;
     this.boardMatrix = [new Array(3), new Array(3), new Array(3)];
   }
+  //limit functionality till play button clicked
   initiate() {
     this.gameStarted = true;
     playerText.textContent = "Make your move";
@@ -27,17 +20,19 @@ class GameBoard {
       this.gameStarted = false;
     }
   }
+  //reset and variable, classed and value back to original
   gameReset(target) {
-    //resert all the values back to default
     console.log(target);
     if (this.gameOver) {
       this.clearBoard();
       this.clearMatrix();
     }
   }
+  //helper funciton to clear(create new) matrix board
   clearMatrix() {
     this.boardMatrix = [new Array(3), new Array(3), new Array(3)];
   }
+  //helper function clear classes of all spans and element displaying strike through
   clearBoard() {
     allSpan.forEach(function (span) {
       span.classList = "";
@@ -47,6 +42,7 @@ class GameBoard {
     this.gameStarted = true;
     this.player = 1;
   }
+  //display the winner and who's turn it is in text above board
   printCurrentPlayer() {
     if (!this.gameOver) {
       if (!this.player) {
@@ -73,8 +69,32 @@ class GameBoard {
           this.coloumnWin(x, y);
           this.diagonalWin();
           this.printCurrentPlayer();
+          this.noWin();
         }
       }
+    }
+  }
+  noWin() {
+    let winNotPossible = true;
+    for (let item of this.boardMatrix[0]) {
+      if (item === undefined) {
+        winNotPossible = false;
+      }
+    }
+    for (let item of this.boardMatrix[1]) {
+      if (item === undefined) {
+        winNotPossible = false;
+      }
+    }
+    for (let item of this.boardMatrix[2]) {
+      if (item === undefined) {
+        winNotPossible = false;
+      }
+    }
+    if (winNotPossible) {
+      playButton.textContent = "play again";
+      playerText.textContent = "no winner";
+      this.gameOver = true;
     }
   }
   diagonalWin() {
@@ -157,7 +177,6 @@ class GameBoard {
       }
     }
     playButton.textContent = "play again";
-    playButton.textContent = "play again";
     this.gameOver = true;
   }
 
@@ -220,3 +239,6 @@ playButton.addEventListener("click", function () {
   board.initiate();
   board.gameReset(event.target);
 });
+
+//like to make it where 2nd player can join game via seperate divive(also option to play agains computer)
+//its two players but in reality just one player really as would have to play from same device currently...
